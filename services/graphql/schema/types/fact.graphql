@@ -1,0 +1,27 @@
+type Feed {
+  totalCount: Int
+  feed: [Fact]
+}
+
+type Fact {
+  id: Int
+  content: String
+  excerpt(size: Int = 50): String
+}
+
+input FactInput {
+  content: String
+}
+
+type Query {
+  facts(size: Int = 10, offset: Int = 0): Feed
+  delayFacts(size: Int = 10, offset: Int = 0): Feed
+}
+
+type Mutation {
+  addFact(fact: FactInput): Fact
+}
+
+type Subscription {
+  factSubscription: Fact
+}
